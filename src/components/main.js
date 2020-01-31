@@ -14,7 +14,7 @@ export default function Main(props) {
         <main>
             <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/dashboard" component={Dashboard} />
             </Switch>
         </main>
     );

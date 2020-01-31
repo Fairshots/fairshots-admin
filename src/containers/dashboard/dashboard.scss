@@ -3,5 +3,8 @@
     .sidebar {
         background-color: #bebebe;
         height: 720px;
+        .nav-link :active {
+            background-color:black;
+        }
     }
 }
