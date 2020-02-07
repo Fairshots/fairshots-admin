@@ -10,6 +10,7 @@ import App from "./src/app";
 import "./node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./css/normalize.css";
 import "./css/main.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
