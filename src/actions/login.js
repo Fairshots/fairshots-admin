@@ -13,7 +13,7 @@ export function login(formProps) {
             })
         };
         try {
-            const res = await fetch(`${FAIRSHOTS_API}login`, config);
+            const res = await fetch(`${FAIRSHOTS_API}adm/login`, config);
             if (res.ok) {
                 const usertoSave = await res.json();
                 console.log(usertoSave);

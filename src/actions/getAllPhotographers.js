@@ -9,7 +9,7 @@ export default function getAllPhotographers(token = undefined) {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token
+                Authorization: `bearer ${token}`
             }
         };
         try {
