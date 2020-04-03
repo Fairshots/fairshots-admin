@@ -5,27 +5,15 @@
         height: 720px;
         .nav-item {
             padding: 10px 16px;
-            a { color: black; }
+            a {
+                color: black;
+            }
 
-            &.active, &:hover {
+            &.active,
+            &:hover {
                 background-color: #00a74d;
                 color: white;
-              }
-        }     
+            }
+        }
     }
 }
-
-
-.btn {
-    border: none;
-    outline: none;
-    padding: 10px 16px;
-    background-color: #f1f1f1;
-    cursor: pointer;
-  }
-  
-  /* Style the active class (and buttons on mouse-over) */
-  .active, .btn:hover {
-    background-color: #666;
-    color: white;
-  }

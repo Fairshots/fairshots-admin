@@ -169,3 +169,16 @@ export function confirmEmail(formProp) {
         }
     };
 }
+
+function gtag_report_conversion(url) {
+    const callback = function() {
+        if (typeof url !== "undefined") {
+            window.location = url;
+        }
+    };
+    gtag("event", "conversion", {
+        send_to: "AW-697005015/P0M2CImCiMABENfnrcwC",
+        event_callback: callback
+    });
+    return false;
+}

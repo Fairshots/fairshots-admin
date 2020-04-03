@@ -8,11 +8,11 @@ export default function getAllOrgs(token = undefined) {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token
+                Authorization: `bearer ${token}`
             }
         };
         try {
-            const res = await fetch(`${FAIRSHOTS_API}api/organization/all`, config);
+            const res = await fetch(`${FAIRSHOTS_API}adm/123/organization/all`, config);
             if (res.ok) {
                 const allOrgs = await res.json();
                 console.log(allOrgs);

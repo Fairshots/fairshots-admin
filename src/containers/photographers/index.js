@@ -1,7 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Spinner } from "reactstrap";
+import { Spinner, UncontrolledCollapse, Button, CardBody, Card } from "reactstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -15,7 +16,7 @@ const Photographers = ({ allPhotographers, doGetPhotographers, token }) => {
         }
     }, []);
 
-    const columns = ["Name", "Email", "Skill", "City", "Country", "createdAt", "updatedAt"].map(
+    const columns = ["Name", "Email", "Skill", "City", "Country", "createdAt", "lastLogin"].map(
         i => ({
             dataField: i,
             text: i,
@@ -30,12 +31,43 @@ const Photographers = ({ allPhotographers, doGetPhotographers, token }) => {
     const expandRow = {
         renderer: row => (
             <div>
-                {Object.keys(row).map(key => (
-                    <>
-                        <h5>{key}</h5>
-                        <p>{JSON.stringify(row[key])}</p>
-                    </>
-                ))}
+                <div className="d-inline-flex">
+                    <Button
+                        className="btn btn-success"
+                        id="toggler"
+                        style={{ marginRight: "1rem" }}
+                    >
+                        See profile detailed info below
+                    </Button>
+                    <Button className="btn btn-success" style={{ marginRight: "1rem" }}>
+                        Suspend user
+                    </Button>
+                    <Button className="btn btn-success" style={{ marginRight: "1rem" }}>
+                        Delete permanently
+                    </Button>
+                </div>
+                <UncontrolledCollapse toggler="#toggler">
+                    <Card>
+                        <CardBody>
+                            <ul>
+                                {Object.keys(row).map(key => (
+                                    <li>
+                                        <h5>{key}</h5>
+                                        <p>
+                                            {key === "createdAt" ||
+                                            key === "updatedAt" ||
+                                            key === "lastLogin"
+                                                ? new Date(row[key]).toLocaleString()
+                                                : typeof row[key] === "string"
+                                                ? row[key]
+                                                : JSON.stringify(row[key])}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </CardBody>
+                    </Card>
+                </UncontrolledCollapse>
             </div>
         )
     };
@@ -48,7 +80,7 @@ const Photographers = ({ allPhotographers, doGetPhotographers, token }) => {
             striped
             hover
             condensed
-            rowStyle={{ height: "1em", overflow: "hidden" }}
+            rowStyle={{ height: "1em", overflow: "hidden", cursor: "pointer" }}
             filter={filterFactory()}
             pagination={paginationFactory()}
             expandRow={expandRow}
